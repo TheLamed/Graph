@@ -9,6 +9,8 @@ namespace Graph
         internal List<Vertex<VertexT, EdgeT>> Vertexes;
         internal List<Edge<EdgeT, VertexT>> Edges;
 
+        public EdgeValue<EdgeT> EdgeValue;
+
         public Graph()
         {
             Vertexes = new List<Vertex<VertexT, EdgeT>>();

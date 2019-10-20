@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Graph
 {
-    public static class Extensions
+    public partial class Graph<VertexT, EdgeT>
     {
         //public static List<Edge<int, VertexT>> ShortWay<VertexT>( this Graph<VertexT, int> graph, 
         //    Vertex<VertexT, int> start,
@@ -22,14 +22,14 @@ namespace Graph
         //    }
         //}
         private static int Min(int a, int b) => a > b ? b : a;
-        private class DijkstraObject<VertexT>
+        private class DijkstraObject
         {
-            public Vertex<VertexT, int> Vertex;
+            public Vertex<VertexT, EdgeT> Vertex;
             public int? Mark;
             public bool Constant;
-            public Vertex<VertexT, int> PrevVertex;
+            public Vertex<VertexT, EdgeT> PrevVertex;
 
-            public DijkstraObject(Vertex<VertexT, int> item1, int? item2, bool item3, Vertex<VertexT, int> item4)
+            public DijkstraObject(Vertex<VertexT, EdgeT> item1, int? item2, bool item3, Vertex<VertexT, EdgeT> item4)
             {
                 Vertex = item1;
                 Mark = item2;
@@ -38,11 +38,13 @@ namespace Graph
             }
             public override string ToString() => $"{Vertex}, {Mark}, {Constant}, {PrevVertex}";
         }
-        public static List</*Edge<int, VertexT>*/Vertex<VertexT, int>> ShortWayDijkstra<VertexT>(this Graph<VertexT, int> graph, Vertex<VertexT, int> start, Vertex<VertexT, int> finish)
+        public List<Vertex<VertexT, EdgeT>> ShortWayDijkstra(Vertex<VertexT, EdgeT> start, Vertex<VertexT, EdgeT> finish)
         {
-            var list = new List<DijkstraObject<VertexT>>(graph.Vertexes.Count);
-            foreach (var item in graph)
-                list.Add(new DijkstraObject<VertexT>(item, null, false, null));
+            if (EdgeValue == null) throw new EdgeValueException();
+
+            var list = new List<DijkstraObject>(Vertexes.Count);
+            foreach (var item in this)
+                list.Add(new DijkstraObject(item, null, false, null));
 
             var x = list.Find(v => ReferenceEquals(v.Vertex, start));
             x.Mark = 0;
@@ -59,9 +61,9 @@ namespace Graph
                         if (tmp[i].Constant)
                             continue;
                         if(tmp[i].Mark == null)
-                            tmp[i].Mark = x.Mark + item.Data;
+                            tmp[i].Mark = x.Mark + EdgeValue(item.Data);
                         else
-                            tmp[i].Mark = Min(tmp[i].Mark ?? 0, x.Mark ?? 0 + item.Data);
+                            tmp[i].Mark = Min(tmp[i].Mark ?? 0, x.Mark ?? 0 + EdgeValue(item.Data));
                     }
                     
                 }
@@ -84,7 +86,7 @@ namespace Graph
                 x = tmp_mark;
             }
 
-            var vertex_list = new List<Vertex<VertexT, int>>();
+            var vertex_list = new List<Vertex<VertexT, EdgeT>>();
 
             if (!ReferenceEquals(x.Vertex, finish))
                 return vertex_list;

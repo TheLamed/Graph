@@ -1,4 +1,5 @@
 Graph<string, int> g = new Graph<string, int>();
+g.EdgeValue = v => v;
 
 var a = g.AddVertex("a");
 var b = g.AddVertex("b");
@@ -17,18 +18,20 @@ g.AddEdge(2, true, d, e);
 g.AddEdge(3, true, e, z);
 g.AddEdge(6, true, d, z);
 
+Console.WriteLine("Graph:");
 foreach (var item in g)
 {
-	Console.WriteLine(item);
-	foreach (var edge in item.OutputEdges)
-	Console.WriteLine(" " + edge);
+    Console.WriteLine(item);
+    foreach (var edge in item.OutputEdges)
+        Console.WriteLine(" " + edge);
 }
 
 Console.WriteLine();
+Console.WriteLine("Shortest way:");
 
 var l = g.ShortWayDijkstra(a, z);
 
 foreach (var item in l)
 {
-	Console.WriteLine(item);
+    Console.Write(item + " ");
 }
