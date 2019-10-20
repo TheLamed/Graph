@@ -40,10 +40,7 @@ namespace Graph
             yield return First;
             yield return Second;
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public override string ToString() => $"{First}-[{Data}]-{(isDirected ? ">" : "")}{Second}";
     }
