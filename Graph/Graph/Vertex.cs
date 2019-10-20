@@ -46,9 +46,6 @@ namespace Graph
         {
             return GetEnumerator();
         }
-        public override string ToString()
-        {
-            return $"({Data})";
-        }
+        public override string ToString() => $"({Data})";
     }
 }

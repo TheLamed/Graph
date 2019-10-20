@@ -45,9 +45,6 @@ namespace Graph
             return GetEnumerator();
         }
 
-        public override string ToString()
-        {
-            return $"{First}-[{Data}]-{(isDirected ? ">" : "")}{Second}";
-        }
+        public override string ToString() => $"{First}-[{Data}]-{(isDirected ? ">" : "")}{Second}";
     }
 }

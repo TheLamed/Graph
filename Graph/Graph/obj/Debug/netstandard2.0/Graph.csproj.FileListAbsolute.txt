@@ -19,7 +19,6 @@ F:\універ 3 курс\Теорія алгоримів\Graph\Graph\obj\Debug
 F:\GitHub\Graph\Graph\Graph\bin\Debug\netstandard2.0\Graph.deps.json
 F:\GitHub\Graph\Graph\Graph\bin\Debug\netstandard2.0\Graph.dll
 F:\GitHub\Graph\Graph\Graph\bin\Debug\netstandard2.0\Graph.pdb
-F:\GitHub\Graph\Graph\Graph\obj\Debug\netstandard2.0\Graph.csprojAssemblyReference.cache
 F:\GitHub\Graph\Graph\Graph\obj\Debug\netstandard2.0\Graph.csproj.CoreCompileInputs.cache
 F:\GitHub\Graph\Graph\Graph\obj\Debug\netstandard2.0\Graph.AssemblyInfoInputs.cache
 F:\GitHub\Graph\Graph\Graph\obj\Debug\netstandard2.0\Graph.AssemblyInfo.cs
