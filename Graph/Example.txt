@@ -1,0 +1,34 @@
+Graph<string, int> g = new Graph<string, int>();
+
+var a = g.AddVertex("a");
+var b = g.AddVertex("b");
+var c = g.AddVertex("c");
+var d = g.AddVertex("d");
+var e = g.AddVertex("e");
+var z = g.AddVertex("z");
+
+g.AddEdge(4, true, a, b);
+g.AddEdge(2, true, a, c);
+g.AddEdge(1, true, c, b);
+g.AddEdge(5, true, b, d);
+g.AddEdge(8, true, c, d);
+g.AddEdge(10, true, c, e);
+g.AddEdge(2, true, d, e);
+g.AddEdge(3, true, e, z);
+g.AddEdge(6, true, d, z);
+
+foreach (var item in g)
+{
+	Console.WriteLine(item);
+	foreach (var edge in item.OutputEdges)
+	Console.WriteLine(" " + edge);
+}
+
+Console.WriteLine();
+
+var l = g.ShortWayDijkstra(a, z);
+
+foreach (var item in l)
+{
+	Console.WriteLine(item);
+}
