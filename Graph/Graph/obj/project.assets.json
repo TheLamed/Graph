@@ -186,11 +186,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\універ 3 курс\\Теорія алгоримів\\Graph\\Graph\\Graph.csproj",
+      "projectUniqueName": "F:\\GitHub\\Graph\\Graph\\Graph\\Graph.csproj",
       "projectName": "Graph",
-      "projectPath": "F:\\універ 3 курс\\Теорія алгоримів\\Graph\\Graph\\Graph.csproj",
+      "projectPath": "F:\\GitHub\\Graph\\Graph\\Graph\\Graph.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "F:\\універ 3 курс\\Теорія алгоримів\\Graph\\Graph\\obj\\",
+      "outputPath": "F:\\GitHub\\Graph\\Graph\\Graph\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\ProgramData\\Xamarin\\NuGet\\",

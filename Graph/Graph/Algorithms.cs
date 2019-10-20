@@ -36,10 +36,7 @@ namespace Graph
                 Constant = item3;
                 PrevVertex = item4;
             }
-            public override string ToString()
-            {
-                return $"{Vertex}, {Mark}, {Constant}, {PrevVertex}";
-            }
+            public override string ToString() => $"{Vertex}, {Mark}, {Constant}, {PrevVertex}";
         }
         public static List</*Edge<int, VertexT>*/Vertex<VertexT, int>> ShortWayDijkstra<VertexT>(this Graph<VertexT, int> graph, Vertex<VertexT, int> start, Vertex<VertexT, int> finish)
         {
