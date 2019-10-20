@@ -42,10 +42,7 @@ namespace Graph
         {
             return graph.Edges.GetEnumerator();
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         public override string ToString() => $"({Data})";
     }
 }
