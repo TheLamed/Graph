@@ -6,21 +6,6 @@ namespace Graph
 {
     public partial class Graph<VertexT, EdgeT>
     {
-        //public static List<Edge<int, VertexT>> ShortWay<VertexT>( this Graph<VertexT, int> graph, 
-        //    Vertex<VertexT, int> start,
-        //    Vertex<VertexT, int> finish,
-        //    Algorithms algorithm = Algorithms.Dijkstra)
-        //{
-        //    switch (algorithm)
-        //    {
-        //        case Algorithms.Dijkstra:
-        //            return graph.ShortWayDijkstra(start, finish);
-        //        case Algorithms.Floid:
-        //            return null;
-        //        default:
-        //            throw new Exception("ERROR: Unknown algorithm");
-        //    }
-        //}
         private static int Min(int a, int b) => a > b ? b : a;
         private class DijkstraObject
         {
@@ -102,5 +87,67 @@ namespace Graph
             vertex_list.Reverse();
             return vertex_list;
         }
+
+        private static int? FloidMin(int? a, int? b)
+        {
+            if (a == null && b == null) return null;
+            if (a == null) return b;
+            if (b == null) return a;
+            return a > b ? b : a;
+        }
+        public List<Vertex<VertexT, EdgeT>> ShortWayFloid(Vertex<VertexT, EdgeT> start, Vertex<VertexT, EdgeT> finish)
+        {
+            var list = new List<int?[,]>();
+            list.Add(new int?[Vertexes.Count, Vertexes.Count]);
+            foreach (var item in Vertexes)
+                foreach (var edge in item.OutputEdges)
+                    list[0][Vertexes.IndexOf(edge.First), Vertexes.IndexOf(edge.Second)]
+                        = EdgeValue(edge.Data);
+
+            for (int k = 1; k <= Vertexes.Count; k++)
+            {
+                var matrix = new int?[Vertexes.Count, Vertexes.Count];
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                        matrix[i, j] = i == j ?
+                            0 : FloidMin(list[k - 1][i, j], list[k - 1][i, k - 1] + list[k - 1][k - 1, j]);
+                list.Add(matrix);
+            }
+
+            var O = new List<int?[,]>();
+            O.Add(new int?[Vertexes.Count, Vertexes.Count]);
+            for (int i = 0; i < O[0].GetLength(0); i++)
+                for (int j = 0; j < O[0].GetLength(1); j++)
+                    if (i == j) O[0][i, j] = 0;
+                    else O[0][i, j] = i + 1;
+
+            for (int k = 1; k <= Vertexes.Count; k++)
+            {
+                var matrix = new int?[Vertexes.Count, Vertexes.Count];
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                        if (list[k][i, j] ==  list[k - 1][i, j]) matrix[i, j] = O[k - 1][i, j];
+                        else matrix[i, j] = O[k - 1][k - 1, j];
+                O.Add(matrix);
+            }
+            for (int i = 0; i < O[O.Count - 1].GetLength(0); i++)
+                for (int j = 0; j < O[O.Count - 1].GetLength(1); j++)
+                    O[O.Count - 1][i, j]--;
+
+            int _start = Vertexes.IndexOf(start);
+            int _finish = Vertexes.IndexOf(finish);
+            var output = new List<Vertex<VertexT, EdgeT>>();
+            output.Add(Vertexes[_finish]);
+            while (_start != _finish)
+            {
+                _finish = O[list.Count - 1][_start, _finish] 
+                    ?? throw new Exception("HAH GEIIIII");
+                output.Add(Vertexes[_finish]);
+            }
+
+            output.Reverse();
+            return output;
+        }
+
     }
 }

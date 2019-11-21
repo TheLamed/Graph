@@ -1,0 +1,10 @@
+F:\GitHub\Graph\Graph\test\bin\Debug\test.exe.config
+F:\GitHub\Graph\Graph\test\bin\Debug\test.exe
+F:\GitHub\Graph\Graph\test\bin\Debug\test.pdb
+F:\GitHub\Graph\Graph\test\bin\Debug\Graph.dll
+F:\GitHub\Graph\Graph\test\bin\Debug\Graph.pdb
+F:\GitHub\Graph\Graph\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+F:\GitHub\Graph\Graph\test\obj\Debug\test.csproj.CopyComplete
+F:\GitHub\Graph\Graph\test\obj\Debug\test.exe
+F:\GitHub\Graph\Graph\test\obj\Debug\test.pdb
+F:\GitHub\Graph\Graph\test\obj\Debug\test.csprojAssemblyReference.cache
