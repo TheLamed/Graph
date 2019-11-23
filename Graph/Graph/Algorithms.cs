@@ -27,6 +27,7 @@ namespace Graph
         public List<Vertex<VertexT, EdgeT>> ShortWayDijkstra(Vertex<VertexT, EdgeT> start, Vertex<VertexT, EdgeT> finish)
         {
             if (EdgeValue == null) throw new EdgeValueException();
+            if (start == null || finish == null) return new List<Vertex<VertexT, EdgeT>>();
 
             var list = new List<DijkstraObject>(Vertexes.Count);
             foreach (var item in this)
@@ -97,12 +98,21 @@ namespace Graph
         }
         public List<Vertex<VertexT, EdgeT>> ShortWayFloid(Vertex<VertexT, EdgeT> start, Vertex<VertexT, EdgeT> finish)
         {
+            if (EdgeValue == null) throw new EdgeValueException();
+            if (start == null || finish == null) return new List<Vertex<VertexT, EdgeT>>();
+
             var list = new List<int?[,]>();
             list.Add(new int?[Vertexes.Count, Vertexes.Count]);
             foreach (var item in Vertexes)
                 foreach (var edge in item.OutputEdges)
-                    list[0][Vertexes.IndexOf(edge.First), Vertexes.IndexOf(edge.Second)]
+                {
+                    if(edge.First == item)
+                        list[0][Vertexes.IndexOf(edge.First), Vertexes.IndexOf(edge.Second)]
                         = EdgeValue(edge.Data);
+                    else
+                        list[0][Vertexes.IndexOf(edge.Second), Vertexes.IndexOf(edge.First)]
+                        = EdgeValue(edge.Data);
+                }
 
             for (int k = 1; k <= Vertexes.Count; k++)
             {
